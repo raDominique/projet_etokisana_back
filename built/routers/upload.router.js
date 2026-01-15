@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { upload } from '../middlewares/upload.middleware';
+import { upload } from '../middlewares/upload.middleware.js';
 const router = Router();
 router.post('/image/', upload.single('file'), async (req, res) => {
     if (!req.file) {
@@ -7,7 +7,7 @@ router.post('/image/', upload.single('file'), async (req, res) => {
     }
     return res.json({
         filename: req.file.filename,
-        url: `/backend/uploads/${req.file.filename}`
+        url: `uploads/${req.file.filename}`
     });
 });
 export default router;

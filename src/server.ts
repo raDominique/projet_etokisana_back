@@ -11,7 +11,7 @@ import ConnectDB from './configs/database.config.js';
 import transactionRouter from './routers/transaction.router.js';
 import notificationRouter from './routers/notification.router.js';
 import depotItemRouter from './routers/depotItem.router.js';
-import nodemailer from 'nodemailer';
+// import nodemailer from 'nodemailer';
 import fileUpload from 'express-fileupload';
 import uploadRouter from './routers/upload.router.js';
 

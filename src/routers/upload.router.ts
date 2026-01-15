@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { upload } from '../middlewares/upload.middleware';
+import { upload } from '../middlewares/upload.middleware.js';
 
 
 
@@ -12,7 +12,7 @@ router.post('/image/', upload.single('file'), async(req, res) => {
 
   return res.json({
     filename: req.file.filename,
-    url: `/backend/uploads/${req.file.filename}`
+    url: `uploads/${req.file.filename}`
   });
 });
 

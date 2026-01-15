@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import fileUpload from "express-fileupload";
+// import fileUpload from "express-fileupload";
 import userRouter from "../routers/user.router.js";
 import siteRouter from "../routers/site.router.js";
 import productRouter from "../routers/product.router.js";
@@ -25,7 +25,7 @@ class Server {
             allowedHeaders: ['Content-Type', 'Authorization'],
             credentials: true,
         }));
-        this.app.use(fileUpload());
+        // this.app.use(fileUpload());
         this.app.use('/uploads', express.static('uploads'));// Serve static files from the 'uploads' directory
         
         this.app.use('/api/upload', uploadRouter);
