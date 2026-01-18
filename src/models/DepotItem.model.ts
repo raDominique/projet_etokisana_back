@@ -1,19 +1,20 @@
-import { model, Schema } from "mongoose";
+import mongoose, { model, ObjectId, Schema } from "mongoose";
 
 export interface IDepotItem{
-    currentDepotId : string,
-    productId : string,
+    currentOwnerId : ObjectId,
+    currentDepotId : ObjectId,
+    productId : ObjectId,
     stock: number,
     prix   : number,
     lastUpdate : Date,
 }
 export const DepotItemSchema = new Schema<IDepotItem>({
-    
-    currentDepotId : {type : String,ref:'site'},
-    productId : {type : String,ref:'product'},
-    stock: {type : Number},
-    prix   : {type : Number},
-    lastUpdate : {type : Date},
+    currentOwnerId  : { type : mongoose.Schema.ObjectId , ref : 'user'},
+    currentDepotId  : { type : mongoose.Schema.ObjectId, ref : 'site'},
+    productId       : { type : mongoose.Schema.ObjectId, ref : 'product'},
+    stock           : { type : Number},
+    prix            : { type : Number},
+    lastUpdate      : { type : Date},
 },{
     timestamps : true,
     toJSON : {

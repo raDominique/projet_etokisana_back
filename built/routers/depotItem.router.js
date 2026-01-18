@@ -7,6 +7,7 @@ import { UserModel } from "../models/user.model.js";
 import ftp from "basic-ftp";
 import multer from 'multer';
 import fs from "fs";
+import { Types } from "mongoose";
 const router = Router();
 const upload = multer({ dest: "uploads/" }); // stockage temporaire
 router.get("/", expressAsyncHandler(async (req, res) => {
@@ -58,14 +59,25 @@ router.get('/getStock/:productId/:depotId', expressAsyncHandler(async (req, res)
     console.log(currentStock);
     res.status(200).send(currentStock);
 }));
+router.get('/myproducts/:currentOwnerId', expressAsyncHandler(async (req, res) => {
+    const userId = req.params['currentOwnerId'];
+    const userOID = await UserModel.findOne({ userId: userId });
+    const myProducts = await DepotItemModel.find({ currentOwnerId: userOID?._id })
+        .populate({ path: 'currentOwnerId', model: 'user' })
+        .populate({ path: 'productId', model: 'product' })
+        .populate({ path: 'currentDepotId', model: 'site' });
+    console.log(myProducts);
+    res.status(200).send(myProducts);
+}));
 router.post('/add', expressAsyncHandler(async (req, res) => {
-    const { productId, stock, prix, lastUpdate, currentDepotId, } = req.body;
+    const { currentDepotId, currentOwnerId, productId, stock, prix, lastUpdate, } = req.body;
     let newDepotItemData = {
-        productId,
+        currentDepotId: new Types.ObjectId(currentDepotId),
+        currentOwnerId: new Types.ObjectId(currentOwnerId),
+        productId: new Types.ObjectId(productId),
         stock,
         prix,
         lastUpdate,
-        currentDepotId,
     };
     const newDepotItem = await DepotItemModel.create(newDepotItemData);
     const currentSite = await SiteModel.findOne({ _id: currentDepotId });

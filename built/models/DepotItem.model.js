@@ -1,7 +1,8 @@
-import { model, Schema } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 export const DepotItemSchema = new Schema({
-    currentDepotId: { type: String, ref: 'site' },
-    productId: { type: String, ref: 'product' },
+    currentOwnerId: { type: mongoose.Schema.ObjectId, ref: 'user' },
+    currentDepotId: { type: mongoose.Schema.ObjectId, ref: 'site' },
+    productId: { type: mongoose.Schema.ObjectId, ref: 'product' },
     stock: { type: Number },
     prix: { type: Number },
     lastUpdate: { type: Date },

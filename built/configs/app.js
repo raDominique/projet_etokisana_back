@@ -8,6 +8,7 @@ import categoryRouter from "../routers/category.router.js";
 import notificationRouter from "../routers/notification.router.js";
 import { LIMIT, PORT_DEV } from '../Utils/constant/constant.js';
 import uploadRouter from "../routers/upload.router.js";
+import depotItemRouter from "../routers/depotItem.router.js";
 class Server {
     app = express();
     constructor() {
@@ -30,7 +31,7 @@ class Server {
         this.app.use("/api/product", productRouter);
         this.app.use("/api/category", categoryRouter);
         this.app.use("/api/notification", notificationRouter);
-        //this.app.use("/api/depotItem", depotItemRouter);
+        this.app.use("/api/depotItem", depotItemRouter);
         //this.app.use("/api/transaction", transactionRouter);
     }
     bootstrap() {

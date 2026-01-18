@@ -1,22 +1,23 @@
-import { Schema } from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 export interface IDepotItem {
-    currentDepotId: string;
-    productId: string;
+    currentOwnerId: ObjectId;
+    currentDepotId: ObjectId;
+    productId: ObjectId;
     stock: number;
     prix: number;
     lastUpdate: Date;
 }
-export declare const DepotItemSchema: Schema<IDepotItem, import("mongoose").Model<IDepotItem, any, any, any, import("mongoose").Document<unknown, any, IDepotItem, any, {}> & IDepotItem & {
-    _id: import("mongoose").Types.ObjectId;
+export declare const DepotItemSchema: mongoose.Schema<IDepotItem, mongoose.Model<IDepotItem, any, any, any, mongoose.Document<unknown, any, IDepotItem, any, {}> & IDepotItem & {
+    _id: mongoose.Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IDepotItem, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IDepotItem>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<IDepotItem> & {
-    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, IDepotItem, mongoose.Document<unknown, {}, mongoose.FlatRecord<IDepotItem>, {}, mongoose.ResolveSchemaOptions<mongoose.DefaultSchemaOptions>> & mongoose.FlatRecord<IDepotItem> & {
+    _id: mongoose.Types.ObjectId;
 } & {
     __v: number;
 }>;
-export declare const DepotItemModel: import("mongoose").Model<IDepotItem, {}, {}, {}, import("mongoose").Document<unknown, {}, IDepotItem, {}, {}> & IDepotItem & {
-    _id: import("mongoose").Types.ObjectId;
+export declare const DepotItemModel: mongoose.Model<IDepotItem, {}, {}, {}, mongoose.Document<unknown, {}, IDepotItem, {}, {}> & IDepotItem & {
+    _id: mongoose.Types.ObjectId;
 } & {
     __v: number;
 }, any>;
