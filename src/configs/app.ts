@@ -22,7 +22,7 @@ class Server {
         this.app.use(express.urlencoded({ limit: `${LIMIT}`, extended: true }));
         this.app.use(cors({
             origin: [
-                'https://www.commercegestion.com',
+                /https?:\/\/(www\.)?commercegestion\.com$/,
                 'http://localhost:4200'
             ],
             methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
